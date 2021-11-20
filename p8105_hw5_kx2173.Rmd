@@ -19,11 +19,13 @@ library(tidyverse)
 ```{r}
 file_name_df = list.files(path = "./data", ignore.case = TRUE)
 
-study_data = vector("dataframe")
+study_data = df[FALSE,]
 
 for (i in 1:20) {
-  data[[i]] = read.csv(file_name_df[[i]])
+  study_data[[i]] = read.csv(file_name_df[[i]])
 }
+study_data
+
 ```
 
 
