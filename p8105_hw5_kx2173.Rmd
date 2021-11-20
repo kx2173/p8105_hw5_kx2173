@@ -1,0 +1,39 @@
+---
+title: "p8105_hw5_kx2173"
+author: "Ke Xu"
+date: "11/19/2021"
+output: github_document
+---
+
+```{r}
+library(tidyverse)
+```
+
+## Problem 1
+```{r}
+
+```
+
+
+## Problem 2
+```{r}
+file_name_df = list.files(path = "./data", ignore.case = TRUE)
+
+study_data = vector("dataframe")
+
+for (i in 1:20) {
+  data[[i]] = read.csv(file_name_df[[i]])
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
