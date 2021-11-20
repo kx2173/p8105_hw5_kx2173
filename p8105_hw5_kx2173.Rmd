@@ -68,7 +68,7 @@ study_plot = study_df %>%
   )) +
   scale_color_discrete("Group") +
   theme(plot.title = element_text(hjust = 0.5),
-        axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+        axis.text.x = element_text(angle = 60, vjust = 0.5, hjust=0.5))
 ```
 #### Differences between groups:
 Based on the plot we got, we can find that the mean value of the experiment arm group is greater than the mean value of the control arm group. The trend of the control arm group is flatter than that of the experiment arm group.
@@ -76,8 +76,28 @@ Based on the plot we got, we can find that the mean value of the experiment arm 
 
 ## Problem 3
 ```{r}
+set.seed(10)
 
+iris_with_missing = iris %>% 
+  map_df(~replace(.x, sample(1:150, 20), NA)) %>%
+  mutate(Species = as.character(Species))
+
+fill_missing_value = function(x){
+  if(is.numeric(x)){
+    x = replace(x, is.na(x), mean(x, na.rm = TRUE))
+  }
+  else if(is.character(x)){
+    x = replace(x, is.na(x), "virginica")
+  }
+  
+  return(x)
+}
+
+iris_filled = map_df(.x = iris_with_missing, ~ fill_missing_value(.x)) %>% 
+  mutate_if(is.numeric, round, digits = 2) %>% 
+  view()
 ```
+
 
 
 
